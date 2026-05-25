@@ -1,0 +1,19 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        n = len(nums)
+
+        def solve(i, sequence):
+            if i == n:
+                result.append(sequence[:])
+                return 0
+
+            sequence.append(nums[i])
+            take = solve(i + 1, sequence)
+            sequence.pop()
+
+            skip = solve(i + 1, sequence)
+
+        solve(0, [])
+        return result
+
